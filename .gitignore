@@ -328,3 +328,4 @@ dump.rdb
 *.min.css
 tailwindcss
 .idea
+*.db

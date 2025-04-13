@@ -1,0 +1,46 @@
+<div>
+    <div class="flex justify-between items-center mb-4">
+        <h2 class="text-lg font-semibold">Skills</h2>
+    </div>
+
+    <div class="border border-gray-200 rounded-lg p-4 mb-4">
+        <div class="mb-4">
+            <h3 class="text-gray-700 font-medium mb-2">PROGRAMMING LANGUAGES</h3>
+            <textarea 
+                class="w-full p-3 border border-gray-300 rounded min-h-[80px] resize-none"
+                hx-patch="/api/resume/skills/programming_languages"
+                hx-trigger="change"
+                hx-swap="innerHTML"
+                name="value">{{ resume_data.skills.programming_languages }}</textarea>
+            <div class="mt-1 text-sm text-gray-500">
+                Separate technologies with commas
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <h3 class="text-gray-700 font-medium mb-2">FRAMEWORKS & LIBRARIES</h3>
+            <textarea 
+                class="w-full p-3 border border-gray-300 rounded min-h-[80px] resize-none"
+                hx-patch="/api/resume/skills/frameworks"
+                hx-trigger="change"
+                hx-swap="innerHTML"
+                name="value">{{ resume_data.skills.frameworks }}</textarea>
+            <div class="mt-1 text-sm text-gray-500">
+                Separate technologies with commas
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <h3 class="text-gray-700 font-medium mb-2">DEVELOPER TOOLS</h3>
+            <textarea 
+                class="w-full p-3 border border-gray-300 rounded min-h-[80px] resize-none"
+                hx-patch="/api/resume/skills/developer_tools"
+                hx-trigger="change"
+                hx-swap="innerHTML"
+                name="value">{{ resume_data.skills.developer_tools }}</textarea>
+            <div class="mt-1 text-sm text-gray-500">
+                Separate technologies with commas
+            </div>
+        </div>
+    </div>
+</div>

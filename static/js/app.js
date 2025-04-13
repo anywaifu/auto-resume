@@ -1,3 +1,12 @@
+// Tab activation function (defined globally)
+function activateTab(clickedTab) {
+    document.querySelectorAll('.tab-btn').forEach(tab => {
+        tab.classList.remove('border-purple-500', 'font-medium');
+    });
+    clickedTab.classList.add('border-purple-500', 'font-medium');
+    clickedTab.classList.remove('border-transparent');
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Save button functionality
     const saveButton = document.getElementById('save-button');
@@ -17,6 +26,20 @@ document.addEventListener('DOMContentLoaded', function() {
             // For now, just show a notification
             showNotification('Resume downloaded as PDF', 'success');
         });
+    }
+
+    // Function to refresh the resume preview
+    function refreshResumePreview() {
+        fetch('/api/resume/section/preview')
+            .then(response => response.text())
+            .then(html => {
+                const previewContainer = document.querySelector('.resume-preview');
+                if (previewContainer) {
+                    previewContainer.outerHTML = html;
+                }
+            }).catch(error => {
+                console.error('Error refreshing preview:', error);
+            });
     }
 
     // Shows a notification message
@@ -40,11 +63,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add HTMX event listeners
     document.body.addEventListener('htmx:afterSwap', function(event) {
-        // Update the preview when form changes
-        // In a real app, we would do this more efficiently
-        if (event.detail.target.closest('input, textarea')) {
+        // If the changed element is an input or textarea in the form,
+        // refresh the preview
+        if (event.detail.target && 
+            (event.detail.target.matches('input, textarea') || event.detail.target.closest('input, textarea'))) {
             // This would update the preview with the latest data
             console.log('Form updated, should refresh preview');
+            refreshResumePreview();
         }
     });
 
@@ -58,4 +83,5 @@ document.addEventListener('DOMContentLoaded', function() {
             showNotification('AI-generated points added!', 'success');
         }
     });
+
 });

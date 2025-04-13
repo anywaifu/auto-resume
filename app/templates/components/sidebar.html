@@ -19,22 +19,28 @@
 
     <!-- Tabs -->
     <div class="flex flex-wrap border-b border-gray-200 mb-4">
-        <button class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-t-lg border-b-2 border-transparent hover:border-gray-300 flex items-center mr-2 text-sm transition-colors">
+        <button class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-t-lg border-b-2 border-transparent hover:border-gray-300 flex items-center mr-2 text-sm transition-colors tab-btn"
+                hx-get="/api/resume/section/personal" hx-target="#resume-content-section" hx-on:click="activateTab(this)">
             <i class="fas fa-user-circle mr-2 text-gray-500"></i> Basic Info
         </button>
-        <button class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-t-lg border-b-2 border-purple-500 flex items-center mr-2 text-sm font-medium transition-colors">
+        <button class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-t-lg border-b-2 border-purple-500 flex items-center mr-2 text-sm font-medium transition-colors tab-btn active-tab"
+                hx-get="/api/resume/section/experience" hx-target="#resume-content-section" hx-on:click="activateTab(this)">
             <i class="fas fa-briefcase mr-2 text-gray-700"></i> Work
         </button>
-        <button class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-t-lg border-b-2 border-transparent hover:border-gray-300 flex items-center mr-2 text-sm transition-colors">
+        <button class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-t-lg border-b-2 border-transparent hover:border-gray-300 flex items-center mr-2 text-sm transition-colors tab-btn"
+                hx-get="/api/resume/section/education" hx-target="#resume-content-section" hx-on:click="activateTab(this)">
             <i class="fas fa-graduation-cap mr-2 text-gray-500"></i> Education
         </button>
-        <button class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-t-lg border-b-2 border-transparent hover:border-gray-300 flex items-center mr-2 text-sm transition-colors">
+        <button class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-t-lg border-b-2 border-transparent hover:border-gray-300 flex items-center mr-2 text-sm transition-colors tab-btn"
+                hx-get="/api/resume/section/skills" hx-target="#resume-content-section" hx-on:click="activateTab(this)">
             <i class="fas fa-tools mr-2 text-gray-500"></i> Skills
         </button>
-        <button class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-t-lg border-b-2 border-transparent hover:border-gray-300 flex items-center mr-2 text-sm transition-colors">
+        <button class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-t-lg border-b-2 border-transparent hover:border-gray-300 flex items-center mr-2 text-sm transition-colors tab-btn"
+                hx-get="/api/resume/section/projects" hx-target="#resume-content-section" hx-on:click="activateTab(this)">
             <i class="fas fa-project-diagram mr-2 text-gray-500"></i> Projects
         </button>
-        <button class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-t-lg border-b-2 border-transparent hover:border-gray-300 flex items-center text-sm transition-colors">
+        <button class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-t-lg border-b-2 border-transparent hover:border-gray-300 flex items-center text-sm transition-colors tab-btn"
+                hx-get="/api/resume/section/layout" hx-target="#resume-content-section" hx-on:click="activateTab(this)">
             <i class="fas fa-th-large mr-2 text-gray-500"></i> Layout
         </button>
     </div>

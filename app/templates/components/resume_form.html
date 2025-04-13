@@ -17,7 +17,9 @@
 
     <div id="experience-list">
         {% for item in resume_data.experience %}
-            {% include 'components/experience_item.html' with context %}
+            {% with index=loop.index0 %}
+                {% include 'components/experience_item.html' with context %}
+            {% endwith %}
         {% endfor %}
     </div>
 </div>

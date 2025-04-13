@@ -1,4 +1,4 @@
-<div class="border border-gray-200 rounded-lg p-4 mb-4" id="experience-{{ index }}">
+<div class="border border-gray-200 rounded-lg p-4 mb-4" id="experience-{{ index }}" data-index="{{ index }}">
     <div class="flex justify-between mb-2">
         <h3 class="text-gray-700 font-medium">POSITION</h3>
         <button class="text-red-500 hover:text-red-700 transition-colors"
@@ -13,7 +13,7 @@
            class="w-full p-2 border border-gray-300 rounded mb-4"
            hx-patch="/api/resume/experience/{{ index }}/title"
            hx-trigger="change"
-           hx-vals='{"value": "{{ item.title }}"}'>
+           name="value">
 
     <div class="grid grid-cols-2 gap-4 mb-4">
         <div>
@@ -22,15 +22,15 @@
                    class="w-full p-2 border border-gray-300 rounded"
                    hx-patch="/api/resume/experience/{{ index }}/company"
                    hx-trigger="change"
-                   hx-vals='{"value": "{{ item.company }}"}'>
+                   name="value">
         </div>
         <div>
             <h3 class="text-gray-700 font-medium mb-2">LOCATION</h3>
-            <input type="text" value="{{ item.location }}" placeholder="Location"
+            <input type="text" value="{{ item.location }}"
                    class="w-full p-2 border border-gray-300 rounded"
                    hx-patch="/api/resume/experience/{{ index }}/location"
                    hx-trigger="change"
-                   hx-vals='{"value": "{{ item.location }}"}'>
+                   name="value">
         </div>
     </div>
 
@@ -41,13 +41,13 @@
                    class="w-full p-2 border border-gray-300 rounded"
                    hx-patch="/api/resume/experience/{{ index }}/start_date"
                    hx-trigger="change"
-                   hx-vals='{"value": "{{ item.start_date }}"}'>
+                   name="value">
             <span>–</span>
             <input type="text" value="{{ item.end_date }}"
                    class="w-full p-2 border border-gray-300 rounded"
                    hx-patch="/api/resume/experience/{{ index }}/end_date"
                    hx-trigger="change"
-                   hx-vals='{"value": "{{ item.end_date }}"}'>
+                   name="value">
         </div>
         <div class="mt-1 text-sm text-gray-500">
             Use 'Present' in the date field for current positions
@@ -58,12 +58,12 @@
         <h3 class="text-gray-700 font-medium mb-2">Key Responsibilities & Achievements</h3>
         <div id="responsibility-list-{{ index }}">
             {% for point in item.points %}
-            <div class="relative mb-3 group" id="point-{{ index }}-{{ loop.index0 }}">
+            <div class="relative mb-3 group" id="point-{{ index }}-{{ loop.index0 }}" data-point-index="{{ loop.index0 }}">
                 <textarea
                     class="w-full p-3 pr-10 border border-gray-300 rounded min-h-[100px] resize-none"
                     hx-patch="/api/resume/experience/{{ index }}/point/{{ loop.index0 }}"
                     hx-trigger="change"
-                    hx-vals='{"value": "{{ point }}"}'>{{ point }}</textarea>
+                    name="value">{{ point }}</textarea>
                 <div class="absolute right-2 top-2 flex space-x-1">
                     <button class="text-red-500 hover:text-red-700 opacity-0 group-hover:opacity-100 transition-opacity"
                             hx-delete="/api/resume/experience/{{ index }}/point/{{ loop.index0 }}"
@@ -91,11 +91,13 @@
                 <i class="fas fa-plus mr-1"></i> Add Point
             </button>
             <button class="flex items-center text-sm text-purple-600 hover:text-purple-800 transition-colors"
-                    hx-post="/api/ai/generate-points"
-                    hx-include="closest div"
+                    hx-post="/api/ai/generate-points-html"
                     hx-target="#responsibility-list-{{ index }}"
                     hx-swap="beforeend"
-                    hx-vals='{"job_title": "{{ item.title }}", "company": "{{ item.company }}"}'>
+                    hx-include="this">
+                <input type="hidden" name="job_title" value="{{ item.title }}">
+                <input type="hidden" name="company" value="{{ item.company }}">
+                <input type="hidden" name="exp_index" value="{{ index }}">
                 <i class="fas fa-robot mr-1"></i> Write points with AI
             </button>
         </div>

@@ -2,8 +2,8 @@
     <textarea
         class="w-full p-3 pr-10 border border-gray-300 rounded min-h-[100px] resize-none"
         hx-patch="/api/resume/experience/{{ exp_index }}/point/{{ point_index }}"
-        hx-trigger="change"
-        hx-vals='{"value": "{{ point }}"}'>{{ point }}</textarea>
+        hx-trigger="change delay:200ms"
+        name="value">{{ point }}</textarea>
     <div class="absolute right-2 top-2 flex space-x-1">
         <button class="text-red-500 hover:text-red-700 opacity-0 group-hover:opacity-100 transition-opacity"
                 hx-delete="/api/resume/experience/{{ exp_index }}/point/{{ point_index }}"

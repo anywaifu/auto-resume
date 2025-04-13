@@ -1,0 +1,61 @@
+<div>
+    <div class="flex justify-between items-center mb-4">
+        <h2 class="text-lg font-semibold">Personal Information</h2>
+    </div>
+
+    <div class="border border-gray-200 rounded-lg p-4 mb-4">
+        <div class="mb-4">
+            <h3 class="text-gray-700 font-medium mb-2">FULL NAME</h3>
+            <input type="text" 
+                   value="{{ resume_data.personal_info.name }}"
+                   class="w-full p-2 border border-gray-300 rounded"
+                   hx-patch="/api/resume/personal_info/name"
+                   hx-trigger="change"
+                   hx-swap="innerHTML"
+                   name="value">
+        </div>
+
+        <div class="mb-4">
+            <h3 class="text-gray-700 font-medium mb-2">LOCATION</h3>
+            <input type="text" 
+                   value="{{ resume_data.personal_info.location }}"
+                   class="w-full p-2 border border-gray-300 rounded"
+                   hx-patch="/api/resume/personal_info/location"
+                   hx-trigger="change"
+                   hx-swap="innerHTML"
+                   name="value">
+        </div>
+
+        <div class="mb-4">
+            <h3 class="text-gray-700 font-medium mb-2">EMAIL</h3>
+            <input type="email" 
+                   value="{{ resume_data.personal_info.email }}"
+                   class="w-full p-2 border border-gray-300 rounded"
+                   hx-patch="/api/resume/personal_info/email"
+                   hx-trigger="change"
+                   hx-swap="innerHTML"
+                   name="value">
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <h3 class="text-gray-700 font-medium mb-2">LINKEDIN</h3>
+                <input type="text" value="{{ resume_data.personal_info.linkedin }}"
+                       class="w-full p-2 border border-gray-300 rounded"
+                       hx-patch="/api/resume/personal_info/linkedin"
+                       hx-trigger="change"
+                       hx-swap="innerHTML"
+                       name="value">
+            </div>
+            <div>
+                <h3 class="text-gray-700 font-medium mb-2">GITHUB</h3>
+                <input type="text" value="{{ resume_data.personal_info.github }}"
+                       class="w-full p-2 border border-gray-300 rounded"
+                       hx-patch="/api/resume/personal_info/github"
+                       hx-trigger="change"
+                       hx-swap="innerHTML"
+                       name="value">
+            </div>
+        </div>
+    </div>
+</div>

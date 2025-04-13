@@ -5,7 +5,11 @@
     <!-- Left side - Editor -->
     <div class="bg-white rounded-lg shadow-md p-6 overflow-y-auto">
         {% include 'components/sidebar.html' %}
-        {% include 'components/resume_form.html' %}
+        
+        <!-- Dynamic content container for tab sections -->
+        <div id="resume-content-section">
+            {% include 'components/resume_form.html' %}
+        </div>
     </div>
     
     <!-- Right side - Preview -->

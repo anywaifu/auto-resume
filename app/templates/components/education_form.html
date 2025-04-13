@@ -1,0 +1,47 @@
+<div>
+    <div class="flex justify-between items-center mb-4">
+        <h2 class="text-lg font-semibold">Education</h2>
+        <button class="flex items-center text-sm text-green-600 hover:text-green-800 transition-colors"
+                hx-post="/api/resume/education"
+                hx-target="#education-list"
+                hx-swap="beforeend">
+            <i class="fas fa-plus mr-1"></i> Add Education
+        </button>
+    </div>
+
+    <div id="education-list">
+        {% for edu in resume_data.education %}
+        <div class="border border-gray-200 rounded-lg p-4 mb-4" id="education-{{ loop.index0 }}" data-index="{{ loop.index0 }}">
+            <div class="flex justify-between mb-2">
+                <h3 class="text-gray-700 font-medium">INSTITUTION</h3>
+                <button class="text-red-500 hover:text-red-700 transition-colors"
+                        hx-delete="/api/resume/education/{{ loop.index0 }}"
+                        hx-target="#education-{{ loop.index0 }}"
+                        hx-swap="outerHTML"
+                        hx-confirm="Are you sure you want to delete this education?">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+            <input type="text" value="{{ edu.institution }}"
+                   class="w-full p-2 border border-gray-300 rounded mb-4"
+                   hx-patch="/api/resume/education/{{ loop.index0 }}/institution"
+                   hx-trigger="change"
+                   name="value">
+
+            <h3 class="text-gray-700 font-medium mb-2">DEGREE/PROGRAM</h3>
+            <input type="text" value="{{ edu.degree }}"
+                   class="w-full p-2 border border-gray-300 rounded mb-4"
+                   hx-patch="/api/resume/education/{{ loop.index0 }}/degree"
+                   hx-trigger="change"
+                   name="value">
+
+            <h3 class="text-gray-700 font-medium mb-2">GRADUATION DATE</h3>
+            <input type="text" value="{{ edu.graduation_date }}"
+                   class="w-full p-2 border border-gray-300 rounded"
+                   hx-patch="/api/resume/education/{{ loop.index0 }}/graduation_date"
+                   hx-trigger="change"
+                   name="value">
+        </div>
+        {% endfor %}
+    </div>
+</div>
